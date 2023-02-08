@@ -5,6 +5,6 @@ import com.dpycb.protrackerkmm.data.Task
 
 interface ITasksRepository {
     fun getTasksObservable(): Observable<List<Task>>
-    fun addTask(task: Task)
+    fun addTask(name: String, startDate: Long, endDate: Long)
     fun removeTask(taskId: Long)
 }

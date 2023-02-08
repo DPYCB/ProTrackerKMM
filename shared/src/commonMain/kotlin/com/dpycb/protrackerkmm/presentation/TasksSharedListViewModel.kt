@@ -20,11 +20,8 @@ class TasksListSharedViewModel(private val tasksRepository: ITasksRepository) {
         addTask(randomNames.random(), startDate, endDate)
     }
 
-    fun addTask(name: String, startDate: Long, endDate: Long) = Task(
-        name = name,
-        startDate = startDate,
-        endDate = endDate
-    ).let(tasksRepository::addTask)
+    fun addTask(name: String, startDate: Long, endDate: Long) = tasksRepository
+        .addTask(name, startDate, endDate)
 
     fun removeTask(taskId: Long) = tasksRepository.removeTask(taskId)
 }
