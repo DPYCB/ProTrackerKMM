@@ -1,5 +1,6 @@
 plugins {
     kotlin("multiplatform")
+    kotlin("kapt")
     id("com.android.library")
 }
 
@@ -7,7 +8,7 @@ kotlin {
     android {
         compilations.all {
             kotlinOptions {
-                jvmTarget = "1.8"
+                jvmTarget = "11"
             }
         }
     }
@@ -36,6 +37,17 @@ kotlin {
         }
         val androidMain by getting {
             dependsOn(commonMain)
+            dependencies {
+                implementation("androidx.room:room-runtime:2.2.2")
+                implementation("com.google.code.gson:gson:2.8.6")
+                configurations.get("kapt").dependencies.add(
+                    org.gradle.api.internal.artifacts.dependencies.DefaultExternalModuleDependency(
+                        "androidx.room",
+                        "room-compiler",
+                        "2.0.0"
+                    )
+                )
+            }
         }
         val androidUnitTest by getting
         val iosX64Main by getting
