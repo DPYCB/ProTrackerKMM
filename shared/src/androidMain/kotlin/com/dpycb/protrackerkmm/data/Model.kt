@@ -15,7 +15,6 @@ data class TaskEntity(
     var goals: List<GoalEntity> = listOf()
 )
 
-@Entity
 data class GoalEntity(
     @PrimaryKey(autoGenerate = true)
     var uid: Long = 0L,

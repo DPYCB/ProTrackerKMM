@@ -2,12 +2,7 @@ package com.dpycb.protrackerkmm.android.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.FloatingActionButton
@@ -43,7 +38,7 @@ fun TasksListScreen(viewState: State<TasksListViewState>) {
                 modifier = Modifier.padding(vertical = 16.dp)
             )
 
-            LazyColumn {
+            LazyColumn(modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp)) {
                 val itemViewState = viewState.value.tasks.map { it to viewState.value.onItemClick }
                 items(itemViewState) {(task, onItemClick) ->
                     TaskListItemView(task, onItemClick)
@@ -68,7 +63,7 @@ fun TaskListItemView(
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.clickable { onClick(task.uid) }
+        modifier = Modifier.fillMaxSize().clickable { onClick(task.uid) }
     ) {
         Text(
             text = task.name,
@@ -111,7 +106,8 @@ fun TaskListItemView(
 @Composable
 fun DefaultPreview() {
     MyApplicationTheme {
-        val viewState = remember { mutableStateOf(TasksListViewState()) }
+        val testTask = Task(name = "TestTask")
+        val viewState = remember { mutableStateOf(TasksListViewState(tasks = listOf(testTask))) }
         TasksListScreen(viewState)
     }
 }

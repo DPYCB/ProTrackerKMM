@@ -40,11 +40,11 @@ kotlin {
             dependencies {
                 implementation("androidx.room:room-runtime:2.2.2")
                 implementation("com.google.code.gson:gson:2.8.6")
-                configurations.get("kapt").dependencies.add(
+                configurations["kapt"].dependencies.add(
                     org.gradle.api.internal.artifacts.dependencies.DefaultExternalModuleDependency(
                         "androidx.room",
                         "room-compiler",
-                        "2.0.0"
+                        "2.2.2"
                     )
                 )
             }
@@ -77,5 +77,9 @@ android {
     defaultConfig {
         minSdk = 23
         targetSdk = 33
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 }

@@ -8,16 +8,19 @@ actual class TasksLocalDataSource : KoinComponent {
 
     actual fun getTasks() = tasksDao.getTasks().map { it.fromEntity() }
 
-    actual fun addTask(task: Task) = tasksDao.addTasks(listOf(task.toEntity()))
+    actual fun addTask(task: Task): Long {
+        val taskEntity = task.toEntity()
+        tasksDao.addTasks(listOf(task.toEntity()))
+        return taskEntity.uid
+    }
 
     actual fun removeTask(taskId: Long) = tasksDao.removeTask(taskId)
 
     private fun Task.toEntity() = TaskEntity(
-            uid,
-            name,
-            startDate,
-            endDate,
-            goals.map { it.toEntity() }
+            name = name,
+            startDate = startDate,
+            endDate = endDate,
+            goals = goals.map { it.toEntity() }
         )
 
     private fun TaskEntity.fromEntity() = Task(
@@ -29,10 +32,9 @@ actual class TasksLocalDataSource : KoinComponent {
     )
 
     private fun Goal.toEntity() = GoalEntity(
-        uid,
-        name,
-        weight,
-        status
+        name = name,
+        weight = weight,
+        status = status
     )
 
     private fun GoalEntity.fromEntity() = Goal(

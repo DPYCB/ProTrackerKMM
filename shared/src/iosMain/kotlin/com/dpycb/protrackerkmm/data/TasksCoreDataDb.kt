@@ -1,25 +1,27 @@
 package com.dpycb.protrackerkmm.data
 
+import platform.CoreData.NSFetchRequest
 import platform.CoreData.NSPersistentContainer
 
-object TasksCoreDataDb {
-    val container by lazy {
-        NSPersistentContainer("TasksModel").apply { loadPersistentStoresWithCompletionHandler{ _, _ ->  } }
+class TasksCoreDataDb {
+    private val persistentViewContext by lazy {
+        NSPersistentContainer("TasksModel")
+            .apply { loadPersistentStoresWithCompletionHandler{ _, _ ->  } }
+            .viewContext
     }
 
     fun saveContext() {
-        val viewContext = container.viewContext
-        if (!viewContext.hasChanges)
+        if (!persistentViewContext.hasChanges)
             return
-        viewContext.save(null)
+        persistentViewContext.save(null)
     }
 
     fun addTask() {
 
     }
 
-    fun getTasks() {
-
+    fun getTasks(): List<TaskEntity> {
+        return listOf()
     }
 
     fun removeTask() {
