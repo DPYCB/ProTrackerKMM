@@ -23,7 +23,10 @@ class TasksRepository(
                 startDate = startDate,
                 endDate = endDate
             )
-            val generatedUid = localDataSource.addTask(newTask)
+            val generatedUid = when (val entityId = localDataSource.addTask(newTask)) {
+                0L -> currentTasks.size.toLong()
+                else -> entityId
+            }
             currentTasks.add(newTask.copy(uid = generatedUid))
             currentTasksSubject.onNext(currentTasks)
         }
