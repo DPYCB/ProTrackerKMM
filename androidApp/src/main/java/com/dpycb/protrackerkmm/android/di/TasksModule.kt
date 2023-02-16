@@ -1,8 +1,10 @@
-package com.dpycb.protrackerkmm.di
+package com.dpycb.protrackerkmm.android.di
 
 import android.content.Context
 import androidx.room.Room
-import com.dpycb.protrackerkmm.data.TasksDb
+import com.dpycb.protrackerkmm.android.data.TasksDb
+import com.dpycb.protrackerkmm.android.data.TasksLocalDataSource
+import com.dpycb.protrackerkmm.data.ITasksLocalDataSource
 import org.koin.dsl.module
 
 fun androidTasksModule(context: Context) = module {
@@ -14,4 +16,5 @@ fun androidTasksModule(context: Context) = module {
         ).build()
     }
     single { get<TasksDb>().getTasksDao() }
+    factory<ITasksLocalDataSource> { TasksLocalDataSource(get()) }
 }

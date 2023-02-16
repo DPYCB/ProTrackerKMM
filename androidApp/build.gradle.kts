@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    kotlin("kapt")
 }
 
 android {
@@ -58,4 +59,14 @@ dependencies {
 
     implementation("com.badoo.reaktive:reaktive:1.2.3")
     implementation ("com.badoo.reaktive:rxjava2-interop:1.2.3")
+
+    implementation("androidx.room:room-runtime:2.2.2")
+    implementation("com.google.code.gson:gson:2.8.6")
+    configurations["kapt"].dependencies.add(
+        org.gradle.api.internal.artifacts.dependencies.DefaultExternalModuleDependency(
+            "androidx.room",
+            "room-compiler",
+            "2.2.2"
+        )
+    )
 }

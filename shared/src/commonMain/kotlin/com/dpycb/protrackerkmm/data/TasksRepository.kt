@@ -5,7 +5,7 @@ import com.dpycb.protrackerkmm.domain.ITasksRepository
 import com.dpycb.protrackerkmm.utils.runOnIo
 
 class TasksRepository(
-    private val localDataSource: TasksLocalDataSource
+    private val localDataSource: ITasksLocalDataSource
 ) : ITasksRepository {
     private val currentTasksSubject = BehaviorSubject<List<Task>>(listOf())
 

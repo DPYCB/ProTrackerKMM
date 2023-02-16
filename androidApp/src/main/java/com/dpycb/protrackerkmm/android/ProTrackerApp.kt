@@ -1,7 +1,7 @@
 package com.dpycb.protrackerkmm.android
 
 import android.app.Application
-import com.dpycb.protrackerkmm.di.androidTasksModule
+import com.dpycb.protrackerkmm.android.di.androidTasksModule
 import com.dpycb.protrackerkmm.di.tasksModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger

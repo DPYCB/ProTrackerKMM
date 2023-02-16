@@ -1,4 +1,4 @@
-package com.dpycb.protrackerkmm.data
+package com.dpycb.protrackerkmm.android.data
 
 import androidx.room.Dao
 import androidx.room.Delete

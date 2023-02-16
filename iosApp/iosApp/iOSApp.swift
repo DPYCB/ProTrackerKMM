@@ -4,7 +4,8 @@ import shared
 @main
 struct iOSApp: App {
     init() {
-        IosKoinHelperKt.doInitKoin()
+        TasksLocalDataSourceSwiftContainer.shared.setInstance(instance: TasksLocalDataSource())
+        IosDIKt.doInitKoin()
     }
     
 	var body: some Scene {

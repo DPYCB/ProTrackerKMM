@@ -1,6 +1,6 @@
 package com.dpycb.protrackerkmm.di
 
-import com.dpycb.protrackerkmm.data.TasksCoreDataDb
+import com.dpycb.protrackerkmm.data.TasksLocalDataSourceSwiftContainer
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 
@@ -9,5 +9,5 @@ fun initKoin() = startKoin {
 }
 
 fun iosTaskModule() = module {
-    single { TasksCoreDataDb() }
+    single { TasksLocalDataSourceSwiftContainer.getInstance() }
 }

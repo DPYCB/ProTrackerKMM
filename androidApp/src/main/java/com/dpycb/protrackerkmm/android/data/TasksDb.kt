@@ -1,4 +1,4 @@
-package com.dpycb.protrackerkmm.data
+package com.dpycb.protrackerkmm.android.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

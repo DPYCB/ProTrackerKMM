@@ -1,8 +1,10 @@
-package com.dpycb.protrackerkmm.data
+package com.dpycb.protrackerkmm.android.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
+import com.dpycb.protrackerkmm.data.GoalStatus
+import com.dpycb.protrackerkmm.data.GoalWeight
 import com.google.gson.Gson
 
 @Entity(tableName = "tasks")

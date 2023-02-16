@@ -1,20 +1,23 @@
-package com.dpycb.protrackerkmm.data
+package com.dpycb.protrackerkmm.android.data
 
+import com.dpycb.protrackerkmm.data.Goal
+import com.dpycb.protrackerkmm.data.ITasksLocalDataSource
+import com.dpycb.protrackerkmm.data.Task
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import org.koin.java.KoinJavaComponent.inject
 
-actual class TasksLocalDataSource : KoinComponent {
-    private val tasksDao: TasksDao by inject()
+class TasksLocalDataSource(private val tasksDao: TasksDao) : ITasksLocalDataSource {
 
-    actual fun getTasks() = tasksDao.getTasks().map { it.fromEntity() }
+    override fun getTasks() = tasksDao.getTasks().map { it.fromEntity() }
 
-    actual fun addTask(task: Task): Long {
+    override fun addTask(task: Task): Long {
         val taskEntity = task.toEntity()
         tasksDao.addTasks(listOf(task.toEntity()))
         return taskEntity.uid
     }
 
-    actual fun removeTask(taskId: Long) = tasksDao.removeTask(taskId)
+    override fun removeTask(taskId: Long) = tasksDao.removeTask(taskId)
 
     private fun Task.toEntity() = TaskEntity(
             name = name,
